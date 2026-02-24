@@ -1,3 +1,10 @@
+#Color Condiguration
+COLOR_ORANGE = (255,165,0)
+COLOR_WHITE = (255,255,255)
+COLOR_BLACK = (0,0,0)
+COLOR_BLUE = (0,0,255)
+
+
 #Character Configuration
 FRAME_DIABLO =  [
             './assets/characters/diablo/diablo_parado01.png',
@@ -25,7 +32,16 @@ FRAME_MEDUSA =  [
             './assets/characters/medusa/medusa_parada02.png',
             './assets/characters/medusa/medusa_parada03.png'
         ]
-
+#Menu
+MENU_OPTION = (
+    ' 1 - JOGAR',
+    ' 2 - SAIR'
+)
+MENU_INSTRUCTION =(
+    'Comandos do Jogo:',
+    'SETAS => MOVIMENTA O JOGADOR.',
+    'ESPAÇO => ATACA'
+)
 #Window Configuration
-WIN_WIDTH = 600
-WIN_HEIGHT = 400
+WIN_WIDTH = 640
+WIN_HEIGHT = 360
