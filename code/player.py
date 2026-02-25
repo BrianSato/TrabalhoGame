@@ -2,8 +2,6 @@ import pygame
 
 class Player:
     def __init__(self,x,y,frame_paths):
-        self.x = x
-        self.y = y
         self.frames = [
             pygame.image.load(path).convert_alpha()
             for path in frame_paths
@@ -11,6 +9,7 @@ class Player:
         self.frame_atual = 0
         self.animation_speed = 1000  # milissegundos
         self.last_update = pygame.time.get_ticks()
+        self.rect = self.frames[0].get_rect(topleft=(x,y))
 
     def update(self):
         now = pygame.time.get_ticks()
@@ -19,5 +18,5 @@ class Player:
             self.last_update = now
 
     def draw(self,window):
-       window.blit(self.frames[self.frame_atual], (self.x,self.y))
+       window.blit(self.frames[self.frame_atual], self.rect)
 

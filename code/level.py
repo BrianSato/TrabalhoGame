@@ -1,7 +1,3 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
-import pygame.display
-
 
 class Level:
     def __init__(self,window):
