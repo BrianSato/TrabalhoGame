@@ -1,3 +1,13 @@
+#Background Configuration
+ENTITY_SPEED = {
+    'bg_image01': 1,
+    'bg_image02': 2,
+    'bg_image03': 3,
+    'bg_image04': 4,
+    'bg_image05': 5,
+}
+
+
 #Color Condiguration
 COLOR_ORANGE = (255,165,0)
 COLOR_WHITE = (255,255,255)

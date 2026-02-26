@@ -1,16 +1,19 @@
 import pygame
+from pygame import K_RETURN
+
 from code.const import COLOR_BLACK, WIN_WIDTH, FRAME_DIABLO_SELECT, FRAME_GENIUS_SELECT, COLOR_WHITE, COLOR_ORANGE, \
     COLOR_BLUE
+from code.level import Level
 from code.player import Player
 
 
 class CharacterSelect:
     def __init__(self,window):
         self.window = window
-        self.surf = pygame.image.load('./assets/backgrounds/background_escolher_jogador03.png')
+        self.surf = pygame.image.load('./assets/backgrounds/background_escolher_jogador.png')
         self.rect = self.surf.get_rect(left=0, top=0)
         self.selected_character = 0
-        self.success = False
+        self.state = 'select'
         self.characters = [
             Player(40, 180, FRAME_DIABLO_SELECT),
             Player(220, 180, FRAME_GENIUS_SELECT),
@@ -31,10 +34,10 @@ class CharacterSelect:
                 character.draw(self.window)
 
                 if self.selected_character == index:
-                    if self.success:
-                        color = (COLOR_BLUE)
-                    else:
+                    if self.state == 'select':
                         color = (COLOR_ORANGE)
+                    elif self.state == 'confirm':
+                        color = (COLOR_BLUE)
                 else:
                     color = (COLOR_BLACK)
 
@@ -50,26 +53,33 @@ class CharacterSelect:
                     pygame.quit()  # close window
                     quit()# end game
                 if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_RIGHT and not self.success:
-                        self.selected_character += 1
-                        if self.selected_character >= len(self.characters):
-                            self.selected_character = 0 #volta pro início
-                    if event.key == pygame.K_LEFT and not self.success:
-                        self.selected_character -= 1
-                        if self.selected_character < 0 :
-                            self.selected_character = len(self.characters) -1
-                    if event.key == pygame.K_RETURN:
-                        self.success = True
-            if self.success:
-                self.menu_start(
-                    text_size = 30,
-                    text = 'ENTER PARA JOGAR!',
-                    color = (COLOR_BLUE),
-                    x = 520,
-                    y = 320
-                )
+                    if self.state == 'select':
+                        if event.key == pygame.K_RIGHT :
+                            self.selected_character += 1
+                            if self.selected_character >= len(self.characters):
+                                self.selected_character = 0 #volta pro início
+                        if event.key == pygame.K_LEFT:
+                            self.selected_character -= 1
+                            if self.selected_character < 0 :
+                                self.selected_character = len(self.characters) -1
+                        if event.key in (pygame.K_RETURN,pygame.K_KP_ENTER):
+                            self.state = 'confirm'
 
-            pygame.display.flip()
+                    elif self.state == 'confirm':
+                        if event.key in (pygame.K_RETURN,pygame.K_KP_ENTER):
+                            level = Level(self.window,'Level1')
+                            level_start = level.run()
+                            return self.selected_character
+                if self.state == 'confirm':
+                    self.menu_start(
+                        text_size=30,
+                        text='ENTER PARA JOGAR!',
+                        color=(COLOR_BLUE),
+                        x=520,
+                        y=320
+                    )
+
+                pygame.display.flip()
 
     def menu_characters(self, text_size, text, color,character_rect):
         text_font = pygame.font.Font("./assets/fonts/Bangers-Regular.ttf", size=text_size)

@@ -14,7 +14,7 @@ class Game:
         self.current_state = 'menu'
         self.menu = Menu(self.window)
         self.char_select = CharacterSelect(self.window)
-        self.game_start = Level(self.window)
+        self.game_start = Level(self.window,'Level1')
 
     def run(self):
 
