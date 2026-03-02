@@ -1,21 +1,28 @@
 import pygame
 
+from code.entity import Entity
+
+
 class Player:
-    def __init__(self,x,y,frame_paths):
+    def __init__(self, x, y, frame_paths):
         self.frames = [
             pygame.image.load(path).convert_alpha()
             for path in frame_paths
         ]
         self.frame_atual = 0
-        self.animation_speed = 1000  # milissegundos
+        self.animation_speed = 1000 # milissegundos
         self.last_update = pygame.time.get_ticks()
         self.rect = self.frames[0].get_rect(topleft=(x,y))
+        self.speed = 5
 
-    def update(self):
+    def animate(self):
         now = pygame.time.get_ticks()
         if now - self.last_update > self.animation_speed:
             self.frame_atual = (self.frame_atual + 1) % len(self.frames)
             self.last_update = now
+
+    def move(self,pressed_key):
+        pass
 
     def draw(self,window):
        window.blit(self.frames[self.frame_atual], self.rect)

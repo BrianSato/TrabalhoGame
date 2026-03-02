@@ -28,7 +28,7 @@ class Menu:
             self.window.blit(source=self.surf,dest=self.rect)
 
             for character in self.characters:
-                character.update()
+                character.animate()
                 character.draw(self.window)
 
             # check for all events

@@ -12,3 +12,5 @@ class Entity(ABC):
     @abstractmethod
     def move(self):
         pass
+    def draw(self,window):
+        pass

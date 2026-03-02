@@ -26,6 +26,13 @@ FRAME_DIABLO_SELECT=[
             './assets/characters/diablo/diablo_select02.png',
             './assets/characters/diablo/diablo_select01.png'
 ]
+FRAME_DIABLO_WALK=[
+    './assets/characters/diablo/diablo_andando01.png',
+    './assets/characters/diablo/diablo_andando02.png',
+    './assets/characters/diablo/diablo_andando03.png',
+    './assets/characters/diablo/diablo_andando04.png',
+    './assets/characters/diablo/diablo_andando05.png'
+]
 FRAME_DRAGON =  [
             './assets/characters/dragon/dragon_parado01.png',
             './assets/characters/dragon/dragon_parado02.png',
@@ -43,6 +50,12 @@ FRAME_GENIUS_SELECT = [
             './assets/characters/genius/genio_select01.png',
 
         ]
+FRAME_GENIUS_WALK=[
+    './assets/characters/genius/genio_voando01.png',
+    './assets/characters/genius/genio_voando02.png',
+    './assets/characters/genius/genio_voando03.png',
+    './assets/characters/genius/genio_voando04.png',
+]
 FRAME_LITTLE_MONSTER =  [
             './assets/characters/little_monster/monstrinho_parado01.png',
             './assets/characters/little_monster/monstrinho_parado02.png',

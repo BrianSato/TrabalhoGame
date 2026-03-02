@@ -6,7 +6,6 @@ from code.const import COLOR_BLACK, WIN_WIDTH, FRAME_DIABLO_SELECT, FRAME_GENIUS
 from code.level import Level
 from code.player import Player
 
-
 class CharacterSelect:
     def __init__(self,window):
         self.window = window
@@ -30,7 +29,7 @@ class CharacterSelect:
             self.window.blit(source=self.surf, dest=self.rect)
 
             for index,character in enumerate(self.characters):
-                character.update()
+                character.animate()
                 character.draw(self.window)
 
                 if self.selected_character == index:
@@ -66,10 +65,9 @@ class CharacterSelect:
                             self.state = 'confirm'
 
                     elif self.state == 'confirm':
-                        if event.key in (pygame.K_RETURN,pygame.K_KP_ENTER):
-                            level = Level(self.window,'Level1')
-                            level_start = level.run()
-                            return self.selected_character
+
+                        return self.selected_character
+
                 if self.state == 'confirm':
                     self.menu_start(
                         text_size=30,

@@ -14,7 +14,8 @@ class Game:
         self.current_state = 'menu'
         self.menu = Menu(self.window)
         self.char_select = CharacterSelect(self.window)
-        self.game_start = Level(self.window,'Level1')
+        self.game_start = None
+
 
     def run(self):
 
@@ -23,8 +24,13 @@ class Game:
             if self.current_state == 'menu':
                 self.current_state = self.menu.run()
             elif self.current_state == 'char_select':
-                self.current_state = self.char_select.run()
+                selected_character = self.char_select.run()
+                self.game_start = Level(self.window,'Level1',selected_character)
+                self.current_state = 'game_start'
+
             elif self.current_state == 'game_start':
-                self.current_state = self.game_start.run()
+                self.game_start.run()
+                self.current_state = 'menu'
+
 
             self.clock.tick(60)

@@ -7,3 +7,9 @@ class Enemy:
 
     def move(self, ):
         pass
+
+    def update(self):
+        pass
+
+    def draw(self,window):
+       pass
