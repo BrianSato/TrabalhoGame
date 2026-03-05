@@ -1,21 +1,18 @@
 import pygame
 
+from code.const import ENTITY_HEALTH
 from code.entity import Entity
 
 
 class Player:
-    def __init__(self, x, y, frame_walk,frame_fight=None):
+    def __init__(self, x, y, frame_walk,frame_hit,frame_fight=None):
         #Walk
-        self.frames_walk = [
-            pygame.image.load(path).convert_alpha()
-            for path in frame_walk
-        ]
+        self.frames_walk = self.load_frames(frame_walk)
+        #Hit
+        self.frames_hit = self.load_frames(frame_hit)
         #Fight(opcional)
         if frame_fight:
-            self.frames_fight = [
-                pygame.image.load(path).convert_alpha()
-                for path in frame_fight
-            ]
+            self.frames_fight = self.load_frames(frame_fight)
         else:
             self.frames_fight = None
         #Estado atual
@@ -29,6 +26,9 @@ class Player:
         self.speed = 5
         #Estado de ataque
         self.fighting = False
+        self.life = ENTITY_HEALTH[self.name]
+        self.taking_hit = False
+        self.knockback = 0
 
     def animate(self):
         now = pygame.time.get_ticks()
@@ -47,6 +47,12 @@ class Player:
                 self.frame_atual = 0
         self.image = self.frames[self.frame_atual]
 
+    def load_frames(self,frame_path):
+        frames = []
+        for frame in frame_path:
+            frames.append(pygame.image.load(frame).convert_alpha())
+        return frames
+
     def move(self,displacement_x):
         self.rect.x += displacement_x
         return displacement_x
@@ -56,6 +62,15 @@ class Player:
             self.fighting = True
             self.frames = self.frames_fight
             self.frame_atual = 0
+
+    def take_hit(self):
+        if not self.taking_hit:
+            self.life -= 1
+            self.taking_hit = True
+            self.frames = self.frame_hit
+            self.frame_atual = 0
+            #empurrão
+            self.knockback = 20
 
     def draw(self,window):
        window.blit(self.frames[self.frame_atual], self.rect)

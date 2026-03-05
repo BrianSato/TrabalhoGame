@@ -3,7 +3,8 @@ import random
 import pygame
 from code.background import Background
 from code.const import WIN_WIDTH, FRAME_DIABLO_WALK, FRAME_GENIUS, FRAME_GENIUS_WALK, FRAME_LITTLE_MONSTER_WALK, \
-    FRAME_MEDUSA_WALK, FRAME_DRAGON_WALK, WIN_HEIGHT, FRAME_DIABLO_FIGHT, FRAME_GENIUS_FIGHT
+    FRAME_MEDUSA_WALK, FRAME_DRAGON_WALK, WIN_HEIGHT, FRAME_DIABLO_FIGHT, FRAME_GENIUS_FIGHT, FRAME_LITTLE_MONSTER_HIT, \
+    FRAME_MEDUSA_HIT, FRAME_DIABLO_HIT
 from code.diablo_player import Diablo
 from code.enemy import Enemy
 from code.genius_player import Genius
@@ -13,7 +14,7 @@ from code.player import Player
 class EntityFactory:
 
     @staticmethod
-    def get_entity(entity_name,x=100,y=300):
+    def get_entity(entity_name, x=100, y=300, FRANE_GENIUS_HIT=None):
         match entity_name:
             case 'Level1Bg':
                 list_bg = []
@@ -22,18 +23,16 @@ class EntityFactory:
                     list_bg.append(Background(f'bg_image0{i+1}', (WIN_WIDTH, 0)))
                 return list_bg
             case 'DIABLO':
-                player = Diablo(x,y,FRAME_DIABLO_WALK,FRAME_DIABLO_FIGHT)
+                player = Diablo(x,y,FRAME_DIABLO_WALK,FRAME_DIABLO_FIGHT,FRAME_DIABLO_HIT)
                 return player
             case 'GENIUS':
-                player = Genius(x, y, FRAME_GENIUS_WALK,FRAME_GENIUS_FIGHT)
+                player = Genius(x, y, FRAME_GENIUS_WALK,FRAME_GENIUS_FIGHT,FRANE_GENIUS_HIT)
                 return player
             case 'LITTLE_MONSTER':
-                frame_path = FRAME_LITTLE_MONSTER_WALK
-                enemy = Enemy('LITTLE_MONSTER',(WIN_WIDTH +10, (WIN_HEIGHT -45)),frame_path)
+                enemy = Enemy('LITTLE_MONSTER',(WIN_WIDTH +10, (WIN_HEIGHT -45)),FRAME_LITTLE_MONSTER_WALK,FRAME_LITTLE_MONSTER_HIT)
                 return enemy
             case 'MEDUSA':
-                frame_path = FRAME_MEDUSA_WALK
-                enemy = Enemy('MEDUSA', (WIN_WIDTH + 10, (WIN_HEIGHT - 150)), frame_path)
+                enemy = Enemy('MEDUSA', (WIN_WIDTH + 10, (WIN_HEIGHT - 150)), FRAME_MEDUSA_WALK,FRAME_MEDUSA_HIT)
                 return enemy
             #case 'DRAGON':
             #    frame_path = FRAME_DRAGON_WALK

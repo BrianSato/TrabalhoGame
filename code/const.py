@@ -17,6 +17,13 @@ COLOR_BLUE = (0,0,255)
 
 
 #Character Configuration
+ENTITY_HEALTH = {
+'DIABLO': 5,
+'GENIUS': 5,
+'LITTLE_MONSTER': 3,
+'MEDUSA': 3,
+'DRAGON' : 10
+}
 FRAME_DIABLO =  [
             './assets/characters/diablo/diablo_parado01.png',
             './assets/characters/diablo/diablo_parado02.png',
@@ -38,6 +45,11 @@ FRAME_DIABLO_FIGHT=[
     './assets/characters/diablo/diablo_ataque01.png',
     './assets/characters/diablo/diablo_ataque02.png',
     './assets/characters/diablo/diablo_ataque03.png'
+]
+FRAME_DIABLO_HIT=[
+    './assets/characters/diablo/diablo_ferido01.png',
+    './assets/characters/diablo/diablo_ferido02.png',
+    './assets/characters/diablo/diablo_morte06.png'
 ]
 FRAME_DRAGON =  [
             './assets/characters/dragon/dragon_parado01.png',
@@ -75,6 +87,12 @@ FRAME_GENIUS_FIGHT=[
     './assets/characters/genius/genio_luta03.png',
     './assets/characters/genius/genio_luta04.png'
 ]
+FRAME_GENIUS_HIT=[
+    './assets/characters/genius/genio_machucado01.png',
+    './assets/characters/genius/genio_machucado02.png',
+    './assets/characters/genius/genio_morte03.png',
+    './assets/characters/genius/genio_morte04.png'
+]
 FRAME_LITTLE_MONSTER =  [
             './assets/characters/little_monster/monstrinho_parado01.png',
             './assets/characters/little_monster/monstrinho_parado02.png',
@@ -92,6 +110,12 @@ FRAME_LITTLE_MONSTER_WALK =  [
             './assets/characters/little_monster/monstrinho_ataque03.png',
             './assets/characters/little_monster/monstrinho_ataque05.png'
         ]
+FRAME_LITTLE_MONSTER_HIT = [
+            './assets/characters/little_monster/monstrinho_machucado01.png',
+            './assets/characters/little_monster/monstrinho_machucado02.png',
+            './assets/characters/little_monster/monstrinho_morte03.png',
+            './assets/characters/little_monster/monstrinho_morte05.png'
+]
 FRAME_MEDUSA =  [
             './assets/characters/medusa/medusa_parada01.png',
             './assets/characters/medusa/medusa_parada02.png',
@@ -101,8 +125,13 @@ FRAME_MEDUSA_WALK =  [
             './assets/characters/medusa/medusa_ataque04.png',
             './assets/characters/medusa/medusa_ataque07.png'
         ]
+FRAME_MEDUSA_HIT =  [
+            './assets/characters/medusa/medusa_machucada01.png',
+            './assets/characters/medusa/medusa_machucada02.png'
+        ]
 #Events Configurations
 EVENT_ENEMY = pygame.USEREVENT +1
+
 
 #Menu
 MENU_OPTION = (
