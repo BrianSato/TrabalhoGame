@@ -1,13 +1,15 @@
+import random
 import sys
 import pygame
 from pygame import Surface, Rect
 from pygame.font import Font
 from code import entity
-from code.const import COLOR_WHITE, WIN_HEIGHT
+from code.const import COLOR_WHITE, WIN_HEIGHT, EVENT_ENEMY, SPAWN_TIME
 from code.entityFactory import EntityFactory
 
 class Level:
     def __init__(self,window, name,selected_character):
+        self.timeout = 20000  # 20segundos
         self.selected_character = selected_character
         self.window = window
         self.name = name
@@ -15,8 +17,10 @@ class Level:
         self.entity_bg_list.extend(EntityFactory.get_entity('Level1Bg'))
         self.entity_players_list =[]
         entity_name = 'DIABLO' if self.selected_character == 0 else 'GENIUS'
-        self.entity_players_list.append(EntityFactory.get_entity(entity_name,x=20,y=270))
-        self.timeout = 20000 #20segundos
+        self.entity_players_list.append(EntityFactory.get_entity(entity_name,x=20,y=265))
+        self.entity_enemies_list = []
+        pygame.time.set_timer(EVENT_ENEMY,SPAWN_TIME)
+
 
     def run(self):
         pygame.mixer_music.stop()
@@ -24,18 +28,39 @@ class Level:
         pygame.mixer_music.play(-1)
         clock = pygame.time.Clock()
         while True:
-            pressed_key = pygame.key.get_pressed()
             clock.tick(60)
-            for bg in self.entity_bg_list:
-                bg.move()
-                bg.draw(self.window)
+            pressed_key = pygame.key.get_pressed()
+            displacement_x = 0
+
+            #calcula deslocamento baseado no player
             for player in self.entity_players_list:
-                player.move(pressed_key)
+                displacement_x += player.move(pressed_key)
+                player.animate()
+            #move background
+            for bg in self.entity_bg_list:
+                bg.move(displacement_x)
+            #desenha background primeiro
+            for bg in self.entity_bg_list:
+                bg.draw(self.window)
+            #desenha player depois (fica na frente)
+            for player in self.entity_players_list:
                 player.draw(self.window)
+            #desenha inimigos
+            for enemy in self.entity_enemies_list:
+                enemy.draw(self.window)
+            for enemy in self.entity_enemies_list:
+                enemy.move()
+                #remove se sair da tela
+                if enemy.x < -100:
+                    self.entity_enemies_list.remove(enemy)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     sys.exit()
+                if event.type == EVENT_ENEMY:
+                    choice = random.choice(('LITTLE_MONSTER','MEDUSA'))
+                    self.entity_enemies_list.append(EntityFactory.get_entity(choice))
+
             pygame.display.flip()
 
             # printed text

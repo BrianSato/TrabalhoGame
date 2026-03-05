@@ -10,7 +10,7 @@ class Entity(ABC):
         self.speed = 0
 
     @abstractmethod
-    def move(self):
+    def move(self,displacement_x=0):
         pass
     def draw(self,window):
         pass
