@@ -40,7 +40,7 @@ class Dragon(Enemy):
         frames = self.frame_hit if self.taking_hit else self.frame_walk
         # animação dos frames
         if now - self.last_frame_update > self.frame_interval:
-            self.frame_atual = (self.frame_atual + 1) % len(self.frames)
+            self.frame_atual = (self.frame_atual + 1) % len(frames)
             self.image = frames[self.frame_atual]
             self.last_frame_update = now
 
@@ -69,8 +69,9 @@ class Dragon(Enemy):
 
     def fire(self,level):
         now = pygame.time.get_ticks()
+
         if now - self.last_shoot > self.next_shoot_time:
-            projectile = Projectile(self.rect.centery, self.rect.centery, -1, DRAGON_FIRE, 'DRAGON')
+            projectile = Projectile(self.rect.left - 30, self.rect.centery,-1, DRAGON_FIRE, 'DRAGON')
             level.projectiles_list.append(projectile)
             self.last_shoot = now
             self.next_shoot_time = random.randint(self.min_shoot_cooldown, self.max_shoot_cooldown)

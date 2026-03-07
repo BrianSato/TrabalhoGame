@@ -64,17 +64,16 @@ FRAME_DRAGON =  [
             './assets/characters/dragon/dragon_parado03.png'
         ]
 FRAME_DRAGON_WALK =  [
+            './assets/characters/dragon/dragon_morte01.png',
             './assets/characters/dragon/dragon_andando01.png',
-            './assets/characters/dragon/dragon_andando02.png',
-            './assets/characters/dragon/dragon_andando03.png',
-            './assets/characters/dragon/dragon_andando04.png',
-            './assets/characters/dragon/dragon_andando05.png'
+            './assets/characters/dragon/dragon_andando03.png'
         ]
 FRAME_DRAGON_FIGHT=[
-            './assets/characters/dragon/dragon_ataque01.png',
+            './assets/characters/dragon/dragon_ataque04.png',
+            './assets/characters/dragon/dragon_ataque03.png',
             './assets/characters/dragon/dragon_ataque02.png',
             './assets/characters/dragon/dragon_ataque03.png',
-            './assets/characters/dragon/dragon_ataque04.png',
+            './assets/characters/dragon/dragon_ataque04.png'
 ]
 FRAME_DRAGON_HIT=[
             './assets/characters/dragon/dragon_machucado01.png',
@@ -89,7 +88,7 @@ FRAME_DRAGON_DEATH=[
             './assets/characters/dragon/dragon_morte04.png',
             './assets/characters/dragon/dragon_morte05.png',
 ]
-DRAGON_FIRE= './assets/characters/dragon/fire/dragon_chama01.png'
+DRAGON_FIRE= './assets/characters/dragon/fire/dragon_chama02.png'
 
 FRAME_GENIUS =  [
             './assets/characters/genius/genio_voando01.png',
@@ -184,7 +183,8 @@ MENU_INSTRUCTION =(
     'ESPAÇO => ATACA'
 )
 #Score
-SCORE_HIT = 20
+SCORE_HIT_ENEMY = 20
+SCORE_HIT_BOSS = 50
 SCORE_THRESHOLD = 100
 #Spawn Configuration
 SPAWN_TIME = 4000

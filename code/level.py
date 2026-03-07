@@ -13,10 +13,9 @@ from code.projectile import Projectile
 
 class Level:
     def __init__(self,window, name,player):
-        self.timeout = 20000  # 20segundos
+        self.start_time = pygame.time.get_ticks()
         self.window = window
         self.name = name
-        self.score = 0
         self.dragons_spawned = False
         self.dragons_spawn_event = pygame.USEREVENT + 1
         self.projectiles_list = []
@@ -36,6 +35,10 @@ class Level:
         clock = pygame.time.Clock()
         while True:
             clock.tick(60)
+            current_time = pygame.time.get_ticks()
+            elapsed_time = (current_time - self.start_time) // 1000
+            minutes = elapsed_time // 60
+            seconds = elapsed_time % 60
             pressed_key = pygame.key.get_pressed()
             displacement_x = 0
 
@@ -65,13 +68,13 @@ class Level:
                 projectile.move()
 
             EntityMediator.verify_collision(self)
-            print(f'Score: {self.score},dragon_spawened:{self.dragons_spawned} ')
+
             if self.player.score >= SCORE_THRESHOLD and not self.dragons_spawned:
                 dragon = EntityFactory.get_entity('DRAGON')
                 dragon.level = self
                 self.boss_list.append(dragon)
                 self.dragons_spawned = True
-                print(f'DRAGON entrou no jogo Vida : {dragon.life}')
+
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -83,13 +86,10 @@ class Level:
 
 
             pygame.display.flip()
-
+            print(elapsed_time)
             # printed text
-            total_entities = (len(self.entity_players_list) + len(self.entity_enemies_list)+len(self.entity_bg_list))
-            self.level_text(14, f'{self.name} - Timeout:{self.timeout / 1000:.1f}s', COLOR_WHITE, (10, 5))
-            self.level_text(14, f'{clock.get_fps():.0f}', COLOR_WHITE, (10, WIN_HEIGHT - 35))
-            self.level_text(14, f'entidades:{total_entities}', COLOR_WHITE, (10, WIN_HEIGHT - 20))
-            self.level_text(14, f'Score:{self.score}', COLOR_WHITE, (100, WIN_HEIGHT - 20))
+            self.level_text(20, f'Score:{self.player.score}', COLOR_WHITE, (10, 5))
+            self.level_text(20, f'Time:{minutes:02}:{seconds:02}',COLOR_WHITE, (100, 5))
             pygame.display.flip()
             pass
 
