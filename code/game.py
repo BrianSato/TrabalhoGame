@@ -24,8 +24,9 @@ class Game:
             if self.current_state == 'menu':
                 self.current_state = self.menu.run()
             elif self.current_state == 'char_select':
-                selected_character = self.char_select.run()
-                self.game_start = Level(self.window,'Level1',selected_character)
+                selected_index = self.char_select.run()
+                player_instance = self.char_select.characters_names[selected_index]
+                self.game_start = Level(self.window,'Level1',player_instance)
                 self.current_state = 'game_start'
 
             elif self.current_state == 'game_start':

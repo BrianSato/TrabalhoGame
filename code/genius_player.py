@@ -1,15 +1,17 @@
 import pygame
 
+from code import level
 from code.const import WIN_WIDTH, WIN_HEIGHT
 from code.player import Player
+from code.projectile import Projectile
 
 
 class Genius(Player):
-    def __init__(self, x, y, frame_walk,frame_fight):
-        super().__init__(x, y, frame_walk,frame_fight)
+    def __init__(self, x, y, frame_walk,frame_hit,frame_fight):
+        super().__init__('GENIUS',x, y, frame_walk,frame_hit,frame_fight)
+        self.pressed_key = pygame.key.get_pressed()
 
-    def move(self,pressed_key):
-        pressed_key = pygame.key.get_pressed()
+    def move(self,pressed_key,level):
         displacement_x = 0
         if pressed_key[pygame.K_LEFT]:
             self.rect.x -= self.speed
@@ -27,6 +29,7 @@ class Genius(Player):
             self.animate()
         if pressed_key[pygame.K_SPACE] and not self.fighting:
             self.fight()
+            self.magic(level)
         #impede sair pela esquerda
         if self.rect.left < 0:
             self.rect.left = 0

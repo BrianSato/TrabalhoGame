@@ -14,8 +14,8 @@ class CharacterSelect:
         self.selected_character = 0
         self.state = 'select'
         self.characters = [
-            Player(40, 180, FRAME_DIABLO_SELECT),
-            Player(220, 180, FRAME_GENIUS_SELECT),
+            Player('DIABLO',40, 180, FRAME_DIABLO_SELECT),
+            Player('GENIUS',220, 180, FRAME_GENIUS_SELECT)
         ]
         self.characters_names = ['DIABLO','GENIUS']
 

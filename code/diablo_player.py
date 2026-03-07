@@ -5,9 +5,10 @@ from code.player import Player
 
 
 class Diablo(Player):
-    def __init__(self, x, y, frame_walk,frame_fight):
-        super().__init__(x, y, frame_walk,frame_fight)
+    def __init__(self, x, y, frame_walk,frame_fight,frame_hit):
+        super().__init__('DIABLO',x, y, frame_walk,frame_fight,frame_hit)
         self.pressed_key = pygame.key.get_pressed()
+
         # fisica do pulo
         self.vel_y = 0
         self.gravity = 0.8
@@ -16,7 +17,7 @@ class Diablo(Player):
         self.moving = False
         self.ground_level = y  # posição inicial do chão
 
-    def move(self,pressed_key):
+    def move(self,pressed_key,level=None):
         displacement_x = 0
         self.moving = False
 
@@ -49,7 +50,7 @@ class Diablo(Player):
         if self.rect.right > WIN_WIDTH:
             self.rect.right = WIN_WIDTH
 
-        return displacement_x
+        return super().move(displacement_x,level)
 
 
 

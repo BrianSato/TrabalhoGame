@@ -3,14 +3,15 @@
 import pygame
 
 from code.const import ENTITY_HEALTH
-
-
 class Enemy:
-    def __init__(self,name,position,frame_walk, frame_hit):
+    def __init__(self,name,position,frame_walk, frame_hit=None):
         self.name = name
         self.x,self.y = position
         self.frame_walk = self.load_frames(frame_walk)
-        self.frame_hit = self.load_frames(frame_hit)
+        if frame_hit:
+            self.frame_hit = self.load_frames(frame_hit)
+        else:
+            self.frame_hit = None
         self.frames = self.frame_walk
         self.frame_atual = 0
         self.image = self.frames[self.frame_atual]
@@ -20,14 +21,15 @@ class Enemy:
         self.taking_hit = False
         self.knockback = 0
 
-    def take_hit(self):
+    def take_hit_enemy(self):
         if not self.taking_hit:
             self.life -= 1
             self.taking_hit = True
             self.frames = self.frame_hit
             self.frame_atual = 0
-            #emourrão
+            #empurrão
             self.knockback = 20
+            print(f'{self.name} recebeu tiro, sua vida agora é {self.life}')
 
     def load_frames(self,frame_path):
         frames = []

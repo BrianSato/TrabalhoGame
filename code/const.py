@@ -7,6 +7,10 @@ ENTITY_SPEED = {
     'bg_image03': 3,
     'bg_image04': 4,
     'bg_image05': 5,
+    'DIABLO': 5,
+    'GENIUS': 2,
+    'GENIUS_MAGIC': 5,
+    'DRAGON': 3
 }
 
 #Color Condiguration
@@ -18,7 +22,7 @@ COLOR_BLUE = (0,0,255)
 
 #Character Configuration
 ENTITY_HEALTH = {
-'DIABLO': 5,
+'DIABLO': 100,
 'GENIUS': 5,
 'LITTLE_MONSTER': 3,
 'MEDUSA': 3,
@@ -51,6 +55,9 @@ FRAME_DIABLO_HIT=[
     './assets/characters/diablo/diablo_ferido02.png',
     './assets/characters/diablo/diablo_morte06.png'
 ]
+FRAME_DIABLO_DEATH=[
+
+]
 FRAME_DRAGON =  [
             './assets/characters/dragon/dragon_parado01.png',
             './assets/characters/dragon/dragon_parado02.png',
@@ -63,6 +70,27 @@ FRAME_DRAGON_WALK =  [
             './assets/characters/dragon/dragon_andando04.png',
             './assets/characters/dragon/dragon_andando05.png'
         ]
+FRAME_DRAGON_FIGHT=[
+            './assets/characters/dragon/dragon_ataque01.png',
+            './assets/characters/dragon/dragon_ataque02.png',
+            './assets/characters/dragon/dragon_ataque03.png',
+            './assets/characters/dragon/dragon_ataque04.png',
+]
+FRAME_DRAGON_HIT=[
+            './assets/characters/dragon/dragon_machucado01.png',
+            './assets/characters/dragon/dragon_machucado02.png',
+            './assets/characters/dragon/dragon_ataque01.png',
+            './assets/characters/dragon/dragon_ataque02.png',
+            ]
+FRAME_DRAGON_DEATH=[
+            './assets/characters/dragon/dragon_morte01.png',
+            './assets/characters/dragon/dragon_morte02.png',
+            './assets/characters/dragon/dragon_morte03.png',
+            './assets/characters/dragon/dragon_morte04.png',
+            './assets/characters/dragon/dragon_morte05.png',
+]
+DRAGON_FIRE= './assets/characters/dragon/fire/dragon_chama01.png'
+
 FRAME_GENIUS =  [
             './assets/characters/genius/genio_voando01.png',
             './assets/characters/genius/genio_voando02.png',
@@ -87,12 +115,24 @@ FRAME_GENIUS_FIGHT=[
     './assets/characters/genius/genio_luta03.png',
     './assets/characters/genius/genio_luta04.png'
 ]
+
 FRAME_GENIUS_HIT=[
     './assets/characters/genius/genio_machucado01.png',
     './assets/characters/genius/genio_machucado02.png',
-    './assets/characters/genius/genio_morte03.png',
-    './assets/characters/genius/genio_morte04.png'
+    './assets/characters/genius/genio_machucado01.png',
+    './assets/characters/genius/genio_machucado02.png',
 ]
+FRAME_GENIUS_DEATH=[
+    './assets/characters/genius/genio_morte01.png',
+    './assets/characters/genius/genio_morte02.png',
+    './assets/characters/genius/genio_morte03.png',
+    './assets/characters/genius/genio_morte04.png',
+    './assets/characters/genius/genio_morte05.png',
+    './assets/characters/genius/genio_morte06.png',
+]
+
+GENIUS_MAGIC = './assets/characters/genius/magic/genio_tiro01.png'
+
 FRAME_LITTLE_MONSTER =  [
             './assets/characters/little_monster/monstrinho_parado01.png',
             './assets/characters/little_monster/monstrinho_parado02.png',
@@ -143,7 +183,9 @@ MENU_INSTRUCTION =(
     'SETAS => MOVIMENTA O JOGADOR.',
     'ESPAÇO => ATACA'
 )
-
+#Score
+SCORE_HIT = 20
+SCORE_THRESHOLD = 100
 #Spawn Configuration
 SPAWN_TIME = 4000
 
