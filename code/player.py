@@ -1,7 +1,5 @@
 import pygame
-
 from code.const import ENTITY_HEALTH, ENTITY_SPEED, GENIUS_MAGIC
-from code.entity import Entity
 from code.projectile import Projectile
 
 
@@ -71,7 +69,6 @@ class Player:
             self.image = self.frames[0]
 
     def magic(self,level):
-        print(f'[DEBUG] Criando projétil do {self.name} - owner {type(self)}')
         projectile = Projectile(self.rect.centerx+50, self.rect.centery, 1, GENIUS_MAGIC, self)
         level.projectiles_list.append(projectile)
 
@@ -86,7 +83,6 @@ class Player:
 
     def add_score(self, points):
         self.score += points
-        print(f'Score: {self.score} {self.name}')
 
     def draw(self,window):
        window.blit(self.image, self.rect)

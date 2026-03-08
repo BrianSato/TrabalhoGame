@@ -1,16 +1,11 @@
-import random
-
-import pygame
 from code.background import Background
-from code.const import WIN_WIDTH, FRAME_DIABLO_WALK, FRAME_GENIUS, FRAME_GENIUS_WALK, FRAME_LITTLE_MONSTER_WALK, \
+from code.const import WIN_WIDTH, FRAME_DIABLO_WALK, FRAME_GENIUS_WALK, FRAME_LITTLE_MONSTER_WALK, \
     FRAME_MEDUSA_WALK, FRAME_DRAGON_WALK, WIN_HEIGHT, FRAME_DIABLO_FIGHT, FRAME_GENIUS_FIGHT, FRAME_LITTLE_MONSTER_HIT, \
-    FRAME_MEDUSA_HIT, FRAME_DIABLO_HIT, FRAME_GENIUS_HIT, FRAME_DRAGON_HIT, FRAME_DRAGON_FIGHT
+    FRAME_MEDUSA_HIT, FRAME_DIABLO_HIT, FRAME_GENIUS_HIT, FRAME_DRAGON_HIT
 from code.diablo_player import Diablo
 from code.dragon import Dragon
 from code.enemy import Enemy
 from code.genius_player import Genius
-from code.player import Player
-
 
 class EntityFactory:
 
@@ -38,4 +33,4 @@ class EntityFactory:
             case 'DRAGON':
                 enemy = Dragon('DRAGON',(WIN_WIDTH - 10, (WIN_HEIGHT - 150)),FRAME_DRAGON_WALK,FRAME_DRAGON_HIT)
                 return enemy
-        pass
+

@@ -4,17 +4,17 @@ import pygame
 from pygame import Surface, Rect
 from pygame.font import Font
 from code import entity
-from code.const import COLOR_WHITE, WIN_HEIGHT, EVENT_ENEMY, SPAWN_TIME, SCORE_THRESHOLD
-from code.dragon import Dragon
+from code.const import COLOR_WHITE, EVENT_ENEMY, SPAWN_TIME, SCORE_THRESHOLD
 from code.entityFactory import EntityFactory
 from code.entityMediator import EntityMediator
-from code.projectile import Projectile
 
 
 class Level:
-    def __init__(self,window, name,player):
+    def __init__(self,game,window,name,player):
         self.start_time = pygame.time.get_ticks()
+        self.game_time = 0
         self.window = window
+        self.game = game
         self.name = name
         self.dragons_spawned = False
         self.dragons_spawn_event = pygame.USEREVENT + 1
@@ -36,9 +36,9 @@ class Level:
         while True:
             clock.tick(60)
             current_time = pygame.time.get_ticks()
-            elapsed_time = (current_time - self.start_time) // 1000
-            minutes = elapsed_time // 60
-            seconds = elapsed_time % 60
+            self.game_time = (current_time - self.start_time) // 1000
+            minutes = self.game_time // 60
+            seconds = self.game_time % 60
             pressed_key = pygame.key.get_pressed()
             displacement_x = 0
 
@@ -61,7 +61,6 @@ class Level:
             for boss in self.boss_list:
                 boss.draw(self.window)
                 boss.move()
-
             #desenha tiro
             for projectile in self.projectiles_list:
                 projectile.draw(self.window)
@@ -84,10 +83,13 @@ class Level:
                     choice = random.choice(('LITTLE_MONSTER','MEDUSA'))
                     self.entity_enemies_list.append(EntityFactory.get_entity(choice))
 
-
             pygame.display.flip()
-            print(elapsed_time)
+            if self.game.current_state != 'game_start':
+                return
+
             # printed text
+            self.level_text(20, f'Player:{self.player.name}', COLOR_WHITE, (200, 5))
+            self.level_text(20, f'Life:{self.player.life}', COLOR_WHITE, (350, 5))
             self.level_text(20, f'Score:{self.player.score}', COLOR_WHITE, (10, 5))
             self.level_text(20, f'Time:{minutes:02}:{seconds:02}',COLOR_WHITE, (100, 5))
             pygame.display.flip()

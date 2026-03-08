@@ -1,9 +1,6 @@
 import random
-
 import pygame
-
-from code import level
-from code.const import ENTITY_HEALTH, ENTITY_SPEED, WIN_WIDTH, WIN_HEIGHT, FRAME_DRAGON_FIGHT, DRAGON_FIRE
+from code.const import ENTITY_HEALTH, ENTITY_SPEED, WIN_WIDTH, WIN_HEIGHT, DRAGON_FIRE
 from code.enemy import Enemy
 from code.projectile import Projectile
 
@@ -47,9 +44,6 @@ class Dragon(Enemy):
         if self.taking_hit and self.frame_atual == len(frames) - 1:
             self.taking_hit = False
             self.frame_atual = 0
-
-        estado = 'HIT' if self.taking_hit else 'WALK'
-        print(f'[DEBUG] {self.name} está animado: {estado} - Frame atual: {self.frame_atual}')
 
         # movimento aleatório:
         if now - self.change_dir_timer > self.change_dir_interval:

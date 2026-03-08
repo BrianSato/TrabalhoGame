@@ -1,12 +1,6 @@
 import pygame.image
-from pygame import Surface, Rect, K_KP1, K_KP2
-from pygame.font import Font
-
-from code.const import FRAME_DIABLO, FRAME_GENIUS, FRAME_DRAGON, FRAME_LITTLE_MONSTER, FRAME_MEDUSA, COLOR_ORANGE, \
-    WIN_WIDTH, COLOR_WHITE, MENU_OPTION, COLOR_BLACK, MENU_INSTRUCTION, COLOR_BLUE
-from code.enemy import Enemy
+from code.const import FRAME_DIABLO, FRAME_GENIUS, FRAME_DRAGON, FRAME_LITTLE_MONSTER, FRAME_MEDUSA
 from code.menu_character import MenuCharacter
-from code.player import Player
 
 class Menu:
     def __init__(self,window):

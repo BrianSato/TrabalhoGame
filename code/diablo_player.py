@@ -1,5 +1,4 @@
 import pygame
-
 from code.const import WIN_WIDTH
 from code.player import Player
 

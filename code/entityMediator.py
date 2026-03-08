@@ -1,9 +1,5 @@
-from code import player, projectile
 from code.const import WIN_WIDTH, SCORE_HIT_ENEMY
-from code.entity import Entity
 from code.player import Player
-from code.projectile import Projectile
-
 
 class EntityMediator:
 
@@ -28,13 +24,15 @@ class EntityMediator:
                             #passar chamada de morte do inimigo
                             level.entity_enemies_list.remove(enemy)
                         elif enemy in level.boss_list:
+                            level.game.current_state = 'victory'
                             #passar chamada de morte do Boss
-                            level.boss_list.remove(enemy)
+                            #level.boss_list.remove(enemy)
                         players.add_score(SCORE_HIT_ENEMY)
                     if players.life <= 0 and players in level.entity_players_list:
+                        level.game.current_state = 'game_over'
                         # adicionar chamada de frames da morte do player
                         # passar chamada da tela de game over com score e tempo de jogo.
-                        level.entity_players_list.remove(players)
+                        #level.entity_players_list.remove(players)
                     break
         #Colisão inimigo com BOSS
         for boss in level.boss_list[:]:
@@ -51,27 +49,23 @@ class EntityMediator:
                 #Se o dono for Player,adiciona SCORE
                 if isinstance(projectiles.owner,Player):
                     for enemy in all_enemies[:]:
-                        print("Boss list:", level.boss_list)
                         if projectiles.rect.colliderect(enemy.rect):
                             enemy.take_hit_enemy()
-                            print('COLISAO DETECTADA', type(enemy))
-
-                            print(f'{projectiles.owner.name} {enemy.life} acertou!Score agora:{projectiles.owner.score}')
                             level.projectiles_list.remove(projectiles)
                         if enemy.life <=0:
                             if enemy in level.entity_enemies_list:
                                 level.entity_enemies_list.remove(enemy)
                             elif enemy in level.boss_list:
-                                level.boss_list.remove(enemy)
+                                level.game.current_state = 'victory'
                             projectiles.owner.add_score(SCORE_HIT_ENEMY)
 
                 elif projectiles.owner == 'DRAGON':
                     if projectiles.rect.colliderect(level.player.rect):
                         level.player.take_hit()
-                        print('Player atingido pelo Dragon!')
                         if projectiles in level.projectiles_list[:]:
-                            print("Projectile owner:", projectiles.owner)
                             level.projectiles_list.remove(projectiles)
+                        if level.player.life <= 0 and level.player in level.entity_players_list:
+                            level.game.current_state = 'game_over'
 
 
         EntityMediator.__verify_collision_window(level)

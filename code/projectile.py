@@ -1,8 +1,5 @@
 import pygame
-
 from code.const import ENTITY_SPEED
-from code.entity import Entity
-
 
 class Projectile:
     def __init__(self,x,y,direction,image_path,owner):

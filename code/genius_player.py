@@ -1,10 +1,6 @@
 import pygame
-
-from code import level
 from code.const import WIN_WIDTH, WIN_HEIGHT
 from code.player import Player
-from code.projectile import Projectile
-
 
 class Genius(Player):
     def __init__(self, x, y, frame_walk,frame_hit,frame_fight):

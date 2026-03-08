@@ -1,9 +1,6 @@
 import pygame
-from pygame import K_RETURN
-
-from code.const import COLOR_BLACK, WIN_WIDTH, FRAME_DIABLO_SELECT, FRAME_GENIUS_SELECT, COLOR_WHITE, COLOR_ORANGE, \
+from code.const import COLOR_BLACK,FRAME_DIABLO_SELECT, FRAME_GENIUS_SELECT, COLOR_ORANGE, \
     COLOR_BLUE
-from code.level import Level
 from code.player import Player
 
 class CharacterSelect:

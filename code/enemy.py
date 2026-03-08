@@ -1,8 +1,6 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
 import pygame
-
 from code.const import ENTITY_HEALTH
+
 class Enemy:
     def __init__(self,name,position,frame_walk, frame_hit=None):
         self.name = name
@@ -29,7 +27,6 @@ class Enemy:
             self.frame_atual = 0
             #empurrão
             self.knockback = 20
-            print(f'{self.name} recebeu tiro, sua vida agora é {self.life}')
 
     def load_frames(self,frame_path):
         frames = []
