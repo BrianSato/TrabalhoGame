@@ -12,6 +12,7 @@ class GameOverScreen:
         pass
 
     def screen(self,score,game_time):
+        pygame.mixer_music.stop()
         while True:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:

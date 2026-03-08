@@ -20,9 +20,8 @@ class CharacterSelect:
         # play the background music
         pygame.mixer_music.load('./assets/sounds/sound_menu.mp3')
         pygame.mixer_music.play(-1)
-
+        self.state = 'select'
         while True:
-
             self.window.blit(source=self.surf, dest=self.rect)
 
             for index,character in enumerate(self.characters):

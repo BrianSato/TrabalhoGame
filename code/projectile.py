@@ -11,7 +11,6 @@ class Projectile:
 
     def move(self):
         self.rect.centerx += self.speed * self.direction
-        print("Projectile x:", self.rect.x)
 
     def draw(self,window):
         window.blit(self.image,self.rect)

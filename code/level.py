@@ -19,7 +19,7 @@ class Level:
         self.dragons_spawned = False
         self.dragons_spawn_event = pygame.USEREVENT + 1
         self.projectiles_list = []
-        self.entity_bg_list : list[entity] = []
+        self.entity_bg_list = []
         self.entity_bg_list.extend(EntityFactory.get_entity('Level1Bg'))
         self.player = EntityFactory.get_entity(player,x=20,y=265)
         self.entity_players_list = [self.player]
