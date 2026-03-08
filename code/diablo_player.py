@@ -4,8 +4,8 @@ from code.player import Player
 
 
 class Diablo(Player):
-    def __init__(self, x, y, frame_walk,frame_fight,frame_hit):
-        super().__init__('DIABLO',x, y, frame_walk,frame_fight,frame_hit)
+    def __init__(self, x, y, frame_walk,frame_fight,frame_hit,frame_death):
+        super().__init__('DIABLO',x, y, frame_walk,frame_fight,frame_hit,frame_death)
         self.pressed_key = pygame.key.get_pressed()
 
         # fisica do pulo

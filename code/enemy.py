@@ -2,14 +2,12 @@ import pygame
 from code.const import ENTITY_HEALTH
 
 class Enemy:
-    def __init__(self,name,position,frame_walk, frame_hit=None):
+    def __init__(self,name,position,frame_walk,frame_hit=None, frame_death=None):
         self.name = name
         self.x,self.y = position
         self.frame_walk = self.load_frames(frame_walk)
-        if frame_hit:
-            self.frame_hit = self.load_frames(frame_hit)
-        else:
-            self.frame_hit = None
+        self.frame_hit = self.load_frames(frame_hit) if frame_hit else None
+        self.frame_death = self.load_frames(frame_death) if frame_death else None
         self.frames = self.frame_walk
         self.frame_atual = 0
         self.image = self.frames[self.frame_atual]
@@ -28,6 +26,10 @@ class Enemy:
             #empurrão
             self.knockback = 20
 
+    def enemy_death(self):
+        self.frames = self.frame_death
+        self.frame_atual = 0
+
     def load_frames(self,frame_path):
         frames = []
         for frame in frame_path:
@@ -44,6 +46,9 @@ class Enemy:
             if self.taking_hit:
                 self.taking_hit = False
                 self.frames = self.frame_walk
+            elif self.frame_frames == self.frame_death:
+                self.frame_atual = len(self.frames) - 1
+                return
             self.frame_atual = 0
         self.image = self.frames[int(self.frame_atual)]
         #empurrão

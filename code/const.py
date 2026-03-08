@@ -56,7 +56,12 @@ FRAME_DIABLO_HIT=[
     './assets/characters/diablo/diablo_morte06.png'
 ]
 FRAME_DIABLO_DEATH=[
-
+    './assets/characters/diablo/diablo_morte01.png',
+    './assets/characters/diablo/diablo_morte02.png',
+    './assets/characters/diablo/diablo_morte03.png',
+    './assets/characters/diablo/diablo_morte04.png',
+    './assets/characters/diablo/diablo_morte05.png',
+    './assets/characters/diablo/diablo_morte06.png',
 ]
 FRAME_DRAGON =  [
             './assets/characters/dragon/dragon_parado01.png',
@@ -155,6 +160,14 @@ FRAME_LITTLE_MONSTER_HIT = [
             './assets/characters/little_monster/monstrinho_morte03.png',
             './assets/characters/little_monster/monstrinho_morte05.png'
 ]
+FRAME_LITTLE_MONSTER_DEATH = [
+        './assets/characters/little_monster/monstrinho_morte01.png',
+        './assets/characters/little_monster/monstrinho_morte02.png'
+        './assets/characters/little_monster/monstrinho_morte03.png'
+        './assets/characters/little_monster/monstrinho_morte04.png'
+        './assets/characters/little_monster/monstrinho_morte05.png'
+        './assets/characters/little_monster/monstrinho_morte06.png'
+]
 FRAME_MEDUSA =  [
             './assets/characters/medusa/medusa_parada01.png',
             './assets/characters/medusa/medusa_parada02.png',
@@ -168,6 +181,14 @@ FRAME_MEDUSA_HIT =  [
             './assets/characters/medusa/medusa_machucada01.png',
             './assets/characters/medusa/medusa_machucada02.png'
         ]
+FRAME_MEDUSA_DEATH = [
+        './assets/characters/medusa/medusa_morte01.png',
+        './assets/characters/medusa/medusa_morte02.png',
+        './assets/characters/medusa/medusa_morte03.png',
+        './assets/characters/medusa/medusa_morte04.png',
+        './assets/characters/medusa/medusa_morte05.png',
+        './assets/characters/medusa/medusa_morte06.png',
+]
 #Events Configurations
 EVENT_ENEMY = pygame.USEREVENT +1
 

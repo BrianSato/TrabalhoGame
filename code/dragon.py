@@ -6,8 +6,8 @@ from code.projectile import Projectile
 
 
 class Dragon(Enemy):
-    def __init__(self, name, position, frame_walk,frame_hit,projectile=None):
-        super().__init__(name, position, frame_walk,frame_hit)
+    def __init__(self, name, position, frame_walk,frame_hit,frame_death,projectile=None):
+        super().__init__(name, position, frame_walk,frame_hit,frame_death)
         #Atributos extras do Dragon
         self.name = name
         self.projectile = projectile #utilizado pro tiro

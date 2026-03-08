@@ -3,8 +3,8 @@ from code.const import WIN_WIDTH, WIN_HEIGHT
 from code.player import Player
 
 class Genius(Player):
-    def __init__(self, x, y, frame_walk,frame_hit,frame_fight):
-        super().__init__('GENIUS',x, y, frame_walk,frame_hit,frame_fight)
+    def __init__(self, x, y, frame_walk,frame_hit,frame_fight,frame_death):
+        super().__init__('GENIUS',x, y, frame_walk,frame_hit,frame_fight,frame_death)
         self.pressed_key = pygame.key.get_pressed()
 
     def move(self,pressed_key,level):

@@ -21,14 +21,16 @@ class EntityMediator:
                         players.take_hit()
                     if enemy.life <=0:
                         if enemy in level.entity_enemies_list:
-                            #passar chamada de morte do inimigo
+                            enemy.enemy_death()
                             level.entity_enemies_list.remove(enemy)
                         elif enemy in level.boss_list:
+                            enemy.enemy_death()
                             level.game.current_state = 'victory'
                             #passar chamada de morte do Boss
                             #level.boss_list.remove(enemy)
                         players.add_score(SCORE_HIT_ENEMY)
                     if players.life <= 0 and players in level.entity_players_list:
+                        players.player.player_death()
                         level.game.current_state = 'game_over'
                         # adicionar chamada de frames da morte do player
                         # passar chamada da tela de game over com score e tempo de jogo.
@@ -54,8 +56,10 @@ class EntityMediator:
                             level.projectiles_list.remove(projectiles)
                         if enemy.life <=0:
                             if enemy in level.entity_enemies_list:
+                                enemy.enemy_death()
                                 level.entity_enemies_list.remove(enemy)
                             elif enemy in level.boss_list:
+                                enemy.enemy_death()
                                 level.game.current_state = 'victory'
                             projectiles.owner.add_score(SCORE_HIT_ENEMY)
 
@@ -65,6 +69,7 @@ class EntityMediator:
                         if projectiles in level.projectiles_list[:]:
                             level.projectiles_list.remove(projectiles)
                         if level.player.life <= 0 and level.player in level.entity_players_list:
+                            level.player.player_death()
                             level.game.current_state = 'game_over'
 
 

@@ -4,13 +4,14 @@ from code.projectile import Projectile
 
 
 class Player:
-    def __init__(self, name,x, y, frame_walk,frame_hit=None,frame_fight=None):
+    def __init__(self, name,x, y, frame_walk,frame_hit=None,frame_fight=None,frame_death=None):
         self.name = name
         self.score = 0
         #carregar frames
         self.frames_walk = self.load_frames(frame_walk)
         self.frames_hit = self.load_frames(frame_hit) if frame_hit else None
         self.frames_fight = self.load_frames(frame_fight) if frame_fight else None
+        self.frames_death = self.load_frames(frame_death) if frame_death else None
 
         #Estado inicial
         self.frames = self.frames_walk
@@ -80,6 +81,10 @@ class Player:
             self.frame_atual = 0
             #empurrão
             self.knockback = 50
+
+    def player_death(self):
+        self.frames = self.frames_death
+        self.frame_atual = 0
 
     def add_score(self, points):
         self.score += points
