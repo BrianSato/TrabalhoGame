@@ -33,7 +33,6 @@ class EntityMediator:
 
                     if players.life <= 0 and players in level.entity_players_list:
                         players.player_death()
-                        pygame.time.delay(500)
                     if level.player.is_death and level.player.frame_atual >= len(level.player.frames) - 1:
                         level.game.current_state = 'game_over'
                         # adicionar chamada de frames da morte do player
@@ -60,20 +59,6 @@ class EntityMediator:
                             if projectiles in level.projectiles_list:
                                 level.projectiles_list.remove(projectiles)
                                 break
-                    for enemy in all_enemies[:]:
-                        if enemy.life <=0 and not enemy.enemy_is_death:
-                            enemy.enemy_death()
-                            level.player.add_score(SCORE_HIT_ENEMY)
-                        for enemy in level.boss_list:
-                            print('BOSS encontrado',enemy.name)
-                            print('frame:',enemy.frame_atual,'total:',len(enemy.frames))
-                            if enemy.life <=0 and enemy.frame_atual >= len(enemy.frames) - 1:
-                                enemy.enemy_death()
-                                level.game.current_state = 'victory'
-                        for enemy in level.entity_enemies_list[:]:
-                            if enemy.enemy_is_death and enemy.frame_atual >= len(enemy.frames) - 1:
-                                level.entity_enemies_list.remove(enemy)
-
                 elif projectiles.owner == 'DRAGON':
                     if projectiles.rect.colliderect(level.player.rect):
                         level.player.take_hit()
@@ -81,12 +66,20 @@ class EntityMediator:
                             level.projectiles_list.remove(projectiles)
                         if level.player.life <= 0 and level.player in level.entity_players_list:
                             level.player.player_death()
-                            pygame.time.delay(900)
                             level.game.current_state = 'game_over'
-
+        for enemy in all_enemies[:]:
+            if enemy.life <=0 and not enemy.enemy_is_death:
+                enemy.enemy_death()
+                level.player.add_score(SCORE_HIT_ENEMY)
+            for enemy in level.entity_enemies_list[:]:
+                if enemy.enemy_is_death and enemy.frame_atual >= len(enemy.frames) - 1:
+                    level.entity_enemies_list.remove(enemy)
+            for enemy in level.boss_list:
+                if enemy.life <=0 and enemy.frame_atual >= len(enemy.frames) - 1:
+                    enemy.enemy_death()
+                    level.game.current_state = 'victory'
 
         EntityMediator.__verify_collision_window(level)
-
 
     @staticmethod
     def __verify_collision_window(level):

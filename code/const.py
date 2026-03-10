@@ -92,6 +92,8 @@ FRAME_DRAGON_DEATH=[
             './assets/characters/dragon/dragon_morte03.png',
             './assets/characters/dragon/dragon_morte04.png',
             './assets/characters/dragon/dragon_morte05.png',
+            './assets/characters/dragon/dragon_morte05.png',
+            './assets/characters/dragon/dragon_morte05.png',
 ]
 DRAGON_FIRE= './assets/characters/dragon/fire/dragon_chama02.png'
 
@@ -166,6 +168,8 @@ FRAME_LITTLE_MONSTER_DEATH = [
         './assets/characters/little_monster/monstrinho_morte03.png',
         './assets/characters/little_monster/monstrinho_morte04.png',
         './assets/characters/little_monster/monstrinho_morte05.png',
+        './assets/characters/little_monster/monstrinho_morte06.png',
+        './assets/characters/little_monster/monstrinho_morte06.png',
         './assets/characters/little_monster/monstrinho_morte06.png'
 ]
 FRAME_MEDUSA =  [
@@ -187,6 +191,8 @@ FRAME_MEDUSA_DEATH = [
         './assets/characters/medusa/medusa_morte03.png',
         './assets/characters/medusa/medusa_morte04.png',
         './assets/characters/medusa/medusa_morte05.png',
+        './assets/characters/medusa/medusa_morte06.png',
+        './assets/characters/medusa/medusa_morte06.png',
         './assets/characters/medusa/medusa_morte06.png',
 ]
 #Events Configurations
