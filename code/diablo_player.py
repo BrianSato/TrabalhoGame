@@ -1,11 +1,12 @@
 import pygame
+
 from code.const import WIN_WIDTH
 from code.player import Player
 
 
 class Diablo(Player):
-    def __init__(self, x, y, frame_walk,frame_fight,frame_hit,frame_death):
-        super().__init__('DIABLO',x, y, frame_walk,frame_fight,frame_hit,frame_death)
+    def __init__(self, x, y, frame_walk, frame_fight, frame_hit, frame_death):
+        super().__init__('DIABLO', x, y, frame_walk, frame_fight, frame_hit, frame_death)
         self.pressed_key = pygame.key.get_pressed()
 
         # fisica do pulo
@@ -16,7 +17,7 @@ class Diablo(Player):
         self.moving = False
         self.ground_level = y  # posição inicial do chão
 
-    def move(self,pressed_key,level=None):
+    def move(self, pressed_key, level=None):
         displacement_x = 0
         self.moving = False
 
@@ -49,7 +50,4 @@ class Diablo(Player):
         if self.rect.right > WIN_WIDTH:
             self.rect.right = WIN_WIDTH
 
-        return super().move(displacement_x,level)
-
-
-
+        return super().move(displacement_x, level)

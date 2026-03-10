@@ -1,16 +1,18 @@
-import pygame
 from abc import ABC, abstractmethod
+
+import pygame
 
 
 class Entity(ABC):
-    def __init__(self,name,position):
+    def __init__(self, name, position):
         self.name = name
-        self.surf = pygame.image.load('./assets/backgrounds/'+name+'.png')
-        self.rect = self.surf.get_rect(left=position[0],top=position[1])
+        self.surf = pygame.image.load('./assets/backgrounds/' + name + '.png')
+        self.rect = self.surf.get_rect(left=position[0], top=position[1])
         self.speed = 0
 
     @abstractmethod
-    def move(self,displacement_x=0):
+    def move(self, displacement_x=0):
         pass
-    def draw(self,window):
+
+    def draw(self, window):
         pass

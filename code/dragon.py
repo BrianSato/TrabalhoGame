@@ -1,31 +1,33 @@
 import random
+
 import pygame
+
 from code.const import ENTITY_HEALTH, ENTITY_SPEED, WIN_WIDTH, WIN_HEIGHT, DRAGON_FIRE
 from code.enemy import Enemy
 from code.projectile import Projectile
 
 
 class Dragon(Enemy):
-    def __init__(self, name, position, frame_walk,frame_hit,frame_death,projectile=None):
-        super().__init__(name, position, frame_walk,frame_hit,frame_death)
-        #Atributos extras do Dragon
-        self.projectile = projectile #utilizado pro tiro
+    def __init__(self, name, position, frame_walk, frame_hit, frame_death, projectile=None):
+        super().__init__(name, position, frame_walk, frame_hit, frame_death)
+        # Atributos extras do Dragon
+        self.projectile = projectile  # utilizado pro tiro
         self.life = ENTITY_HEALTH['DRAGON']
-        #direções e velocidade do movimentos do Dragon
+        # direções e velocidade do movimentos do Dragon
         self.speed_x = ENTITY_SPEED[self.name]
         self.speed_y = ENTITY_SPEED[self.name]
-        self.direction_x = random.choice([-1,0,1])
-        self.direction_y = random.choice([-1,0,1])
+        self.direction_x = random.choice([-1, 0, 1])
+        self.direction_y = random.choice([-1, 0, 1])
         self.change_dir_timer = pygame.time.get_ticks()
         self.change_dir_interval = 1000
-        #efeitos de movimento
+        # efeitos de movimento
         self.last_frame_update = pygame.time.get_ticks()
         self.frame_interval = 100
-        #tiros
+        # tiros
         self.min_shoot_cooldown = 1000
         self.max_shoot_cooldown = 3000
         self.last_shoot = 0
-        self.next_shoot_time = random.randint(self.min_shoot_cooldown,self.max_shoot_cooldown)
+        self.next_shoot_time = random.randint(self.min_shoot_cooldown, self.max_shoot_cooldown)
         self.last_shoot = pygame.time.get_ticks()
 
     def move(self):
@@ -66,14 +68,12 @@ class Dragon(Enemy):
 
     def enemy_death(self):
         super().enemy_death()
-    def fire(self,level):
+
+    def fire(self, level):
         now = pygame.time.get_ticks()
 
         if now - self.last_shoot > self.next_shoot_time:
-            projectile = Projectile(self.rect.left - 30, self.rect.centery,-1, DRAGON_FIRE, 'DRAGON')
+            projectile = Projectile(self.rect.left - 30, self.rect.centery, -1, DRAGON_FIRE, 'DRAGON')
             level.projectiles_list.append(projectile)
             self.last_shoot = now
             self.next_shoot_time = random.randint(self.min_shoot_cooldown, self.max_shoot_cooldown)
-
-
-
