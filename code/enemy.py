@@ -15,6 +15,7 @@ class Enemy:
         self.speed = 2
         self.life = ENTITY_HEALTH[self.name]
         self.taking_hit = False
+        self.enemy_is_death = False
         self.knockback = 0
 
     def take_hit_enemy(self):
@@ -27,8 +28,12 @@ class Enemy:
             self.knockback = 20
 
     def enemy_death(self):
-        self.frames = self.frame_death
-        self.frame_atual = 0
+        print('frames usados:',len(self.frames))
+        if not self.enemy_is_death:
+            self.enemy_is_death = True
+            self.frames = self.frame_death
+            self.frame_atual = 0
+            print('Death frame reset:', self.frame_atual)
 
     def load_frames(self,frame_path):
         frames = []
@@ -37,6 +42,13 @@ class Enemy:
         return frames
 
     def move(self):
+        #se estiver na animação de morte, não se move
+        if self.enemy_is_death:
+            self.frame_atual +=0.2
+            if self.frame_atual >= len(self.frames):
+                self.frame_atual = len(self.frames) - 1
+            self.image = self.frames[int(self.frame_atual)]
+            return
         #movimento horizontal simples
         self.x -= self.speed
         self.rect.topleft = (self.x,self.y)
@@ -46,9 +58,6 @@ class Enemy:
             if self.taking_hit:
                 self.taking_hit = False
                 self.frames = self.frame_walk
-            elif self.frame_frames == self.frame_death:
-                self.frame_atual = len(self.frames) - 1
-                return
             self.frame_atual = 0
         self.image = self.frames[int(self.frame_atual)]
         #empurrão

@@ -28,6 +28,7 @@ class Player:
         #Estados
         self.fighting = False
         self.taking_hit = False
+        self.is_death = False
         #Vida
         self.life = ENTITY_HEALTH[self.name]
         #knockback
@@ -41,6 +42,13 @@ class Player:
 
     def animate(self):
         now = pygame.time.get_ticks()
+        # se estiver na animação de morte, não se move
+        if self.frames == self.is_death:
+            self.frame_atual += 0.2
+            if self.frame_atual >= len(self.frames):
+                self.frame_atual = len(self.frames) - 1
+            self.image = self.frames[int(self.frame_atual)]
+            return
         if not self.fighting and not self.taking_hit and not getattr(self,'moving',False):
             self.frame_atual = 0
             self.image = self.frames[self.frame_atual]
@@ -83,8 +91,10 @@ class Player:
             self.knockback = 50
 
     def player_death(self):
-        self.frames = self.frames_death
-        self.frame_atual = 0
+        if not self.is_death:
+            self.is_death = True
+            self.frames = self.frames_death
+            self.frame_atual = 0
 
     def add_score(self, points):
         self.score += points

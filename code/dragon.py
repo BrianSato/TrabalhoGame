@@ -9,7 +9,6 @@ class Dragon(Enemy):
     def __init__(self, name, position, frame_walk,frame_hit,frame_death,projectile=None):
         super().__init__(name, position, frame_walk,frame_hit,frame_death)
         #Atributos extras do Dragon
-        self.name = name
         self.projectile = projectile #utilizado pro tiro
         self.life = ENTITY_HEALTH['DRAGON']
         #direções e velocidade do movimentos do Dragon
@@ -20,21 +19,29 @@ class Dragon(Enemy):
         self.change_dir_timer = pygame.time.get_ticks()
         self.change_dir_interval = 1000
         #efeitos de movimento
-        self.taking_hit = False
         self.last_frame_update = pygame.time.get_ticks()
         self.frame_interval = 100
-        self.frame_atual = 0
         #tiros
         self.min_shoot_cooldown = 1000
         self.max_shoot_cooldown = 3000
         self.last_shoot = 0
         self.next_shoot_time = random.randint(self.min_shoot_cooldown,self.max_shoot_cooldown)
         self.last_shoot = pygame.time.get_ticks()
+        print('walk:',len(frame_walk))
+        print('hit:',len(frame_hit))
+        print('death:',len(frame_death))
 
 
     def move(self):
         now = pygame.time.get_ticks()
         frames = self.frame_hit if self.taking_hit else self.frame_walk
+        # se estiver na animação de morte, não se move
+        if self.enemy_is_death:
+            self.frame_atual += 0.2
+            if self.frame_atual >= len(self.frames):
+                self.frame_atual = len(self.frames) - 1
+            self.image = self.frames[int(self.frame_atual)]
+            return
         # animação dos frames
         if now - self.last_frame_update > self.frame_interval:
             self.frame_atual = (self.frame_atual + 1) % len(frames)
@@ -61,6 +68,9 @@ class Dragon(Enemy):
 
         self.fire(self.level)
 
+    def enemy_death(self):
+        print('Dragon death chamada')
+        super().enemy_death()
     def fire(self,level):
         now = pygame.time.get_ticks()
 

@@ -22,8 +22,8 @@ COLOR_BLUE = (0,0,255)
 
 #Character Configuration
 ENTITY_HEALTH = {
-'DIABLO': 5,
-'GENIUS': 5,
+'DIABLO': 100,
+'GENIUS': 100,
 'LITTLE_MONSTER': 3,
 'MEDUSA': 3,
 'DRAGON' : 2
@@ -162,10 +162,10 @@ FRAME_LITTLE_MONSTER_HIT = [
 ]
 FRAME_LITTLE_MONSTER_DEATH = [
         './assets/characters/little_monster/monstrinho_morte01.png',
-        './assets/characters/little_monster/monstrinho_morte02.png'
-        './assets/characters/little_monster/monstrinho_morte03.png'
-        './assets/characters/little_monster/monstrinho_morte04.png'
-        './assets/characters/little_monster/monstrinho_morte05.png'
+        './assets/characters/little_monster/monstrinho_morte02.png',
+        './assets/characters/little_monster/monstrinho_morte03.png',
+        './assets/characters/little_monster/monstrinho_morte04.png',
+        './assets/characters/little_monster/monstrinho_morte05.png',
         './assets/characters/little_monster/monstrinho_morte06.png'
 ]
 FRAME_MEDUSA =  [
