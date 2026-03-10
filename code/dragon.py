@@ -27,10 +27,6 @@ class Dragon(Enemy):
         self.last_shoot = 0
         self.next_shoot_time = random.randint(self.min_shoot_cooldown,self.max_shoot_cooldown)
         self.last_shoot = pygame.time.get_ticks()
-        print('walk:',len(frame_walk))
-        print('hit:',len(frame_hit))
-        print('death:',len(frame_death))
-
 
     def move(self):
         now = pygame.time.get_ticks()
@@ -69,7 +65,6 @@ class Dragon(Enemy):
         self.fire(self.level)
 
     def enemy_death(self):
-        print('Dragon death chamada')
         super().enemy_death()
     def fire(self,level):
         now = pygame.time.get_ticks()

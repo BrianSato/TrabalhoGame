@@ -28,12 +28,10 @@ class Enemy:
             self.knockback = 20
 
     def enemy_death(self):
-        print('frames usados:',len(self.frames))
         if not self.enemy_is_death:
             self.enemy_is_death = True
             self.frames = self.frame_death
             self.frame_atual = 0
-            print('Death frame reset:', self.frame_atual)
 
     def load_frames(self,frame_path):
         frames = []

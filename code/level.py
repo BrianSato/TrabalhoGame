@@ -3,7 +3,6 @@ import sys
 import pygame
 from pygame import Surface, Rect
 from pygame.font import Font
-from code import entity
 from code.const import COLOR_WHITE, EVENT_ENEMY, SPAWN_TIME, SCORE_THRESHOLD
 from code.entityFactory import EntityFactory
 from code.entityMediator import EntityMediator
@@ -13,6 +12,8 @@ class Level:
     def __init__(self,game,window,name,player):
         self.start_time = pygame.time.get_ticks()
         self.game_time = 0
+        self.victory_timer = None
+        self.game_over_timer = None
         self.window = window
         self.game = game
         self.name = name
@@ -74,6 +75,12 @@ class Level:
                 self.boss_list.append(dragon)
                 self.dragons_spawned = True
 
+            if self.victory_timer is not None:
+                if current_time - self.victory_timer > 2000:
+                    self.game.current_state = 'victory'
+            if self.game_over_timer is not None:
+                if current_time - self.game_over_timer > 2000:
+                    self.game.current_state = 'game_over'
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:

@@ -25,19 +25,20 @@ class EntityMediator:
                         enemy.enemy_death()
                         players.add_score(SCORE_HIT_ENEMY)
                     for enemy in level.entity_enemies_list[:]:
-                        if enemy.is_death and enemy.frame_atual >= len(enemy.frames) - 1:
+                        if enemy.enemy_is_death and enemy.frame_atual >= len(enemy.frames) - 1:
                             level.entity_enemies_list.remove(enemy)
                     for enemy in level.boss_list:
-                        if enemy.is_death and enemy.frame_atual >= len(enemy.frames) - 1:
-                            level.game.current_state = 'victory'
+                        if enemy.enemy_is_death and enemy.frame_atual >= len(enemy.frames) - 1:
+                            if level.victory_time is None:
+                                level.victory_time = pygame.time.get_ticks()
 
                     if players.life <= 0 and players in level.entity_players_list:
                         players.player_death()
-                    if level.player.is_death and level.player.frame_atual >= len(level.player.frames) - 1:
-                        level.game.current_state = 'game_over'
-                        # adicionar chamada de frames da morte do player
-                        # passar chamada da tela de game over com score e tempo de jogo.
-                        #level.entity_players_list.remove(players)
+                        for players in level.entity_players_list[:]:
+                            if players.is_death and players.frame_atual >= len(players.frames) - 1:
+                                level.entity_players_list.remove(players)
+                        if level.game_over_timer is None:
+                            level.game_over_timer = pygame.time.get_ticks()
                     break
         #Colisão inimigo com BOSS
         for boss in level.boss_list[:]:
@@ -66,7 +67,11 @@ class EntityMediator:
                             level.projectiles_list.remove(projectiles)
                         if level.player.life <= 0 and level.player in level.entity_players_list:
                             level.player.player_death()
-                            level.game.current_state = 'game_over'
+                            for level.player in level.entity_players_list[:]:
+                                if level.player.is_death and level.player.frame_atual >= len(level.player.frames) - 1:
+                                    level.entity_players_list.remove(level.player)
+                            if level.game_over_timer is None:
+                                level.game_over_timer = pygame.time.get_ticks()
         for enemy in all_enemies[:]:
             if enemy.life <=0 and not enemy.enemy_is_death:
                 enemy.enemy_death()
@@ -77,7 +82,8 @@ class EntityMediator:
             for enemy in level.boss_list:
                 if enemy.life <=0 and enemy.frame_atual >= len(enemy.frames) - 1:
                     enemy.enemy_death()
-                    level.game.current_state = 'victory'
+                    if level.victory_timer is None:
+                        level.victory_timer = pygame.time.get_ticks()
 
         EntityMediator.__verify_collision_window(level)
 

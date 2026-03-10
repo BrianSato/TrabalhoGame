@@ -22,11 +22,11 @@ COLOR_BLUE = (0,0,255)
 
 #Character Configuration
 ENTITY_HEALTH = {
-'DIABLO': 100,
-'GENIUS': 100,
+'DIABLO': 5,
+'GENIUS': 5,
 'LITTLE_MONSTER': 3,
 'MEDUSA': 3,
-'DRAGON' : 2
+'DRAGON' : 10
 }
 FRAME_DIABLO =  [
             './assets/characters/diablo/diablo_parado01.png',
