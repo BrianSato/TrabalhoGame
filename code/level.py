@@ -36,7 +36,7 @@ class Level:
         pygame.mixer_music.play(-1)
         clock = pygame.time.Clock()
         while True:
-            clock.tick(60)
+            clock.tick(45)
             current_time = pygame.time.get_ticks()
             self.game_time = (current_time - self.start_time) // 1000
             minutes = self.game_time // 60
@@ -88,8 +88,9 @@ class Level:
                     pygame.quit()
                     sys.exit()
                 if event.type == EVENT_ENEMY:
-                    choice = random.choice(('LITTLE_MONSTER', 'MEDUSA'))
-                    self.entity_enemies_list.append(EntityFactory.get_entity(choice))
+                    if len(self.entity_enemies_list) < 6:
+                        choice = random.choice(('LITTLE_MONSTER', 'MEDUSA'))
+                        self.entity_enemies_list.append(EntityFactory.get_entity(choice))
 
             pygame.display.flip()
             if self.game.current_state != 'game_start':
@@ -104,7 +105,7 @@ class Level:
             pass
 
     def level_text(self, text_size, text, text_color, text_pos):
-        text_font: Font = pygame.font.SysFont(name="Lucida Sans Typewriter", size=text_size)
+        text_font: Font = pygame.font.Font("./assets/fonts/Bangers-Regular.ttf", size=text_size)
         text_surf: Surface = text_font.render(text, True, text_color).convert_alpha()
         text_rect: Rect = text_surf.get_rect(left=text_pos[0], top=text_pos[1])
         self.window.blit(source=text_surf, dest=text_rect)
