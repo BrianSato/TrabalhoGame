@@ -30,8 +30,8 @@ class EntityMediator:
                             level.entity_enemies_list.remove(enemy)
                     for enemy in level.boss_list:
                         if enemy.enemy_is_death and enemy.frame_atual >= len(enemy.frames) - 1:
-                            if level.victory_time is None:
-                                level.victory_time = pygame.time.get_ticks()
+                            if level.victory_timer is None:
+                                level.victory_timer = pygame.time.get_ticks()
 
                     if players.life <= 0 and players in level.entity_players_list:
                         players.player_death()

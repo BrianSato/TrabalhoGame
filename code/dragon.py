@@ -8,11 +8,12 @@ from code.projectile import Projectile
 
 
 class Dragon(Enemy):
-    def __init__(self, name, position, frame_walk, frame_hit, frame_death, projectile=None):
-        super().__init__(name, position, frame_walk, frame_hit, frame_death)
+    def __init__(self, name, position, frame_walk, frame_hit,frame_attack, frame_death, projectile=None):
+        super().__init__(name, position, frame_walk, frame_hit,frame_attack, frame_death)
         # Atributos extras do Dragon
         self.projectile = projectile  # utilizado pro tiro
         self.life = ENTITY_HEALTH['DRAGON']
+
         # direções e velocidade do movimentos do Dragon
         self.speed_x = ENTITY_SPEED[self.name]
         self.speed_y = ENTITY_SPEED[self.name]
@@ -32,6 +33,9 @@ class Dragon(Enemy):
 
     def move(self):
         now = pygame.time.get_ticks()
+        if self.state == 'attack':
+            self.attack_animation(self.level)
+            return
         frames = self.frame_hit if self.taking_hit else self.frame_walk
         # se estiver na animação de morte, não se move
         if self.enemy_is_death:
@@ -64,16 +68,38 @@ class Dragon(Enemy):
         self.y = max(0, min(self.y, WIN_HEIGHT - self.rect.height))
         self.rect.topleft = self.x, self.y
 
-        self.fire(self.level)
+        self.try_attack(self.level)
 
     def enemy_death(self):
         super().enemy_death()
 
-    def fire(self, level):
+    def try_attack(self,level):
         now = pygame.time.get_ticks()
+        if self.state == 'walk':
+            if now - self.last_shoot > self.next_shoot_time:
+                self.state = 'attack'
+                self.frame_atual = 0
+                self.fire_released = False
+                self.last_shoot = now
+                self.next_shoot_time = random.randint(self.min_shoot_cooldown, self.max_shoot_cooldown)
 
-        if now - self.last_shoot > self.next_shoot_time:
+    def attack_animation(self,level):
+        if not self.frame_attack:
+            return
+        now = pygame.time.get_ticks()
+        frames = self.frame_attack
+        if now - self.last_frame_update > self.frame_interval:
+            self.frame_atual += 1
+            self.last_frame_update = now
+            if self.frame_atual >= len(frames):
+                self.state = 'walk'
+                self.frame_atual = 0
+                return
+        self.image = frames[self.frame_atual]
+        #Dispara no frame correto
+        FRAME_DRAGON_ATTACK = 3
+
+        if self.frame_atual == FRAME_DRAGON_ATTACK and not self.fire_released:
             projectile = Projectile(self.rect.left - 30, self.rect.centery, -1, DRAGON_FIRE, 'DRAGON')
             level.projectiles_list.append(projectile)
-            self.last_shoot = now
-            self.next_shoot_time = random.randint(self.min_shoot_cooldown, self.max_shoot_cooldown)
+            self.fire_released = True

@@ -1,24 +1,28 @@
 import pygame
 
-from code.const import ENTITY_HEALTH
+from code.const import ENTITY_HEALTH, ENTITY_SPEED
 
 
 class Enemy:
-    def __init__(self, name, position, frame_walk, frame_hit=None, frame_death=None):
+    def __init__(self, name, position, frame_walk, frame_hit, frame_death,frame_attack=None):
         self.name = name
         self.x, self.y = position
         self.frame_walk = self.load_frames(frame_walk)
-        self.frame_hit = self.load_frames(frame_hit) if frame_hit else None
-        self.frame_death = self.load_frames(frame_death) if frame_death else None
+        self.frame_hit = self.load_frames(frame_hit)
+        self.frame_attack = self.load_frames(frame_attack) if frame_attack else None
+        self.frame_death = self.load_frames(frame_death)
         self.frames = self.frame_walk
         self.frame_atual = 0
         self.image = self.frames[self.frame_atual]
         self.rect = self.image.get_rect(topleft=(self.x, self.y))
-        self.speed = 2
+        self.speed = ENTITY_SPEED[self.name]
         self.life = ENTITY_HEALTH[self.name]
+        self.knockback = 0
+        # Estados
+        self.state = 'walk'
+        self.fire_released = False
         self.taking_hit = False
         self.enemy_is_death = False
-        self.knockback = 0
 
     def take_hit_enemy(self):
         if not self.taking_hit:
@@ -67,5 +71,7 @@ class Enemy:
         self.rect.topleft = (self.x, self.y)
 
     def draw(self, window):
+        if not isinstance(self.image, pygame.Surface):
+            print('ERRO IMAGE:',self.image)
         window.blit(self.image, self.rect)
         pass

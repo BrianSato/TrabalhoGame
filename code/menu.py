@@ -1,6 +1,6 @@
 import pygame.image
 
-from code.const import FRAME_DIABLO, FRAME_GENIUS, FRAME_DRAGON, FRAME_LITTLE_MONSTER, FRAME_MEDUSA
+from code.const import FRAME_DIABLO, FRAME_DRAGON, FRAME_LITTLE_MONSTER, FRAME_MEDUSA, FRAME_GENIUS_FLY
 from code.menu_character import MenuCharacter
 
 
@@ -11,7 +11,7 @@ class Menu:
         self.rect = self.surf.get_rect(left=0, top=0)
         self.characters = [
             MenuCharacter('MENU_DIABLO', 50, 260, FRAME_DIABLO),
-            MenuCharacter('MENU_GENIUS', 100, 200, FRAME_GENIUS),
+            MenuCharacter('MENU_GENIUS', 100, 200, FRAME_GENIUS_FLY),
             MenuCharacter('MENU_DRAGON', 470, 200, FRAME_DRAGON),
             MenuCharacter('MENU_LITTLE_MONSTER', 470, 300, FRAME_LITTLE_MONSTER),
             MenuCharacter('MENU_MEDUSA', 440, 280, FRAME_MEDUSA)

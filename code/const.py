@@ -9,8 +9,11 @@ ENTITY_SPEED = {
     'bg_image05': 5,
     'DIABLO': 2,
     'GENIUS': 2,
+    'LITTLE_MONSTER': 3,
+    'MEDUSA': 3,
     'GENIUS_MAGIC': 5,
     'DRAGON': 3,
+    'DRAGON_FIRE':3,
     'MENU_DIABLO': 400,
     'MENU_GENIUS': 400,
     'MENU_MEDUSA': 400,
@@ -75,16 +78,18 @@ FRAME_DRAGON = [
     './assets/characters/dragon/dragon_parado03.png'
 ]
 FRAME_DRAGON_WALK = [
-    './assets/characters/dragon/dragon_morte01.png',
     './assets/characters/dragon/dragon_andando01.png',
-    './assets/characters/dragon/dragon_andando03.png'
+    './assets/characters/dragon/dragon_andando02.png',
+    './assets/characters/dragon/dragon_andando03.png',
+    './assets/characters/dragon/dragon_andando04.png',
+    './assets/characters/dragon/dragon_andando05.png'
+
 ]
-FRAME_DRAGON_FIGHT = [
-    './assets/characters/dragon/dragon_ataque04.png',
-    './assets/characters/dragon/dragon_ataque03.png',
+FRAME_DRAGON_ATTACK = [
+    './assets/characters/dragon/dragon_ataque01.png',
     './assets/characters/dragon/dragon_ataque02.png',
     './assets/characters/dragon/dragon_ataque03.png',
-    './assets/characters/dragon/dragon_ataque04.png'
+    './assets/characters/dragon/dragon_ataque04.png',
 ]
 FRAME_DRAGON_HIT = [
     './assets/characters/dragon/dragon_machucado01.png',
@@ -98,24 +103,17 @@ FRAME_DRAGON_DEATH = [
     './assets/characters/dragon/dragon_morte03.png',
     './assets/characters/dragon/dragon_morte04.png',
     './assets/characters/dragon/dragon_morte05.png',
-    './assets/characters/dragon/dragon_morte05.png',
-    './assets/characters/dragon/dragon_morte05.png',
+
 ]
 DRAGON_FIRE = './assets/characters/dragon/fire/dragon_chama02.png'
 
-FRAME_GENIUS = [
-    './assets/characters/genius/genio_voando01.png',
-    './assets/characters/genius/genio_voando02.png',
-    './assets/characters/genius/genio_voando03.png',
-    './assets/characters/genius/genio_voando04.png'
-]
 FRAME_GENIUS_SELECT = [
     './assets/characters/genius/genio_select01.png',
     './assets/characters/genius/genio_select02.png',
     './assets/characters/genius/genio_select01.png',
 
 ]
-FRAME_GENIUS_WALK = [
+FRAME_GENIUS_FLY = [
     './assets/characters/genius/genio_voando01.png',
     './assets/characters/genius/genio_voando02.png',
     './assets/characters/genius/genio_voando03.png',
@@ -157,9 +155,11 @@ FRAME_LITTLE_MONSTER_WALK = [
     './assets/characters/little_monster/monstrinho_andando03.png',
     './assets/characters/little_monster/monstrinho_andando04.png',
     './assets/characters/little_monster/monstrinho_andando05.png',
+    './assets/characters/little_monster/monstrinho_andando06.png',
     './assets/characters/little_monster/monstrinho_ataque01.png',
     './assets/characters/little_monster/monstrinho_ataque02.png',
     './assets/characters/little_monster/monstrinho_ataque03.png',
+    './assets/characters/little_monster/monstrinho_ataque04.png',
     './assets/characters/little_monster/monstrinho_ataque05.png'
 ]
 FRAME_LITTLE_MONSTER_HIT = [
@@ -175,8 +175,7 @@ FRAME_LITTLE_MONSTER_DEATH = [
     './assets/characters/little_monster/monstrinho_morte04.png',
     './assets/characters/little_monster/monstrinho_morte05.png',
     './assets/characters/little_monster/monstrinho_morte06.png',
-    './assets/characters/little_monster/monstrinho_morte06.png',
-    './assets/characters/little_monster/monstrinho_morte06.png'
+
 ]
 FRAME_MEDUSA = [
     './assets/characters/medusa/medusa_parada01.png',
@@ -198,8 +197,7 @@ FRAME_MEDUSA_DEATH = [
     './assets/characters/medusa/medusa_morte04.png',
     './assets/characters/medusa/medusa_morte05.png',
     './assets/characters/medusa/medusa_morte06.png',
-    './assets/characters/medusa/medusa_morte06.png',
-    './assets/characters/medusa/medusa_morte06.png',
+
 ]
 # Events Configurations
 EVENT_ENEMY = pygame.USEREVENT + 1
