@@ -11,6 +11,10 @@ from code.victory_screen import VictoryScreen
 class Game:
     def __init__(self):
         pygame.init()
+        try:
+            pygame.mixer.init()
+        except pygame.error:
+            print('Audio device not available')
         self.window = pygame.display.set_mode(size=(WIN_WIDTH, WIN_HEIGHT))
         self.clock = pygame.time.Clock()
         self.current_state = 'menu'
