@@ -1,16 +1,20 @@
-## 🎮 Jogo 2D em Pygame
+# 🎮 Jogo 2D em Pygame
+
+<p align="center">
+  <img src="assets/readme/gameplay.gif" width="600">
+</p>
 
 Projeto desenvolvido em Python utilizando Pygame como trabalho acadêmico, com foco em arquitetura de jogos, controle de estados e organização de código.
 
 ---
 
-## 🕹️ Sobre o Jogo
+# 🕹️ Sobre o Jogo
 
 O jogo consiste em um sistema de combate onde o jogador escolhe um personagem e enfrenta inimigos que surgem ao longo do tempo.
  
 ---
 
-## O projeto implementa um fluxo completo de jogo:
+O projeto implementa um fluxo completo de jogo:
 
 # Menu inicial
 - Seleção de personagem
@@ -23,21 +27,21 @@ O jogo consiste em um sistema de combate onde o jogador escolhe um personagem e 
 
 ---
 
-## 🎭 Personagens
+# 🎭 Personagens
 
-# 🔥 Diablo
+## 🔥 Diablo
 
 - Personagem terrestre
   
 - Movimentação limitada ao eixo horizontal
   
-# ✨ Genius
+## ✨ Genius
 
 - Personagem voador
   
 - Movimentação livre na tela (horizontal e vertical)
   
-# 👾 Inimigos
+## 👾 Inimigos
 
 - Spawn de inimigos baseado em tempo (pygame.USEREVENT)
   
@@ -51,7 +55,7 @@ O jogo consiste em um sistema de combate onde o jogador escolhe um personagem e 
 
 ---
   
-## 🧠 Arquitetura
+# 🧠 Arquitetura
 
 O projeto foi estruturado com separação de responsabilidades:
 
@@ -67,7 +71,7 @@ Essa organização facilita manutenção, escalabilidade e entendimento do códi
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
+# 🛠️ Tecnologias Utilizadas
 
 - Python
   
@@ -77,8 +81,8 @@ Essa organização facilita manutenção, escalabilidade e entendimento do códi
 
 ---
 
-## ▶️ Como Executar
-# 🔹 Opção 1 — Executável (Recomendado)
+# ▶️ Como Executar
+## 🔹 Opção 1 — Executável (Recomendado)
 
 Basta executar o arquivo:
 ```bash
@@ -86,7 +90,7 @@ dist/main.exe
 ```
 (Não é necessário instalar Python ou dependências)
 
-#🔹 Opção 2 — Código-fonte
+##🔹 Opção 2 — Código-fonte
 1 - nstale as dependências:
 ```bash
 pip install pygame
@@ -96,7 +100,7 @@ pip install pygame
 python main.py
 ```
 ---
-## 📂 Estrutura do Projeto
+# 📂 Estrutura do Projeto
 ⚠️ Estrutura simplificada — pode conter mais arquivos internos
 ```bash
 project/
@@ -109,13 +113,13 @@ project/
 ├── build/         # arquivos do pyinstaller
 ```
 ---
-## ✅ Status do Projeto
+# ✅ Status do Projeto
 
 ✔️ Finalizado
 ✔️ Jogável
 ✔️ Executável disponível
 ---
-## 🎓 Contexto Acadêmico
+# 🎓 Contexto Acadêmico
 
 # Projeto desenvolvido como trabalho de faculdade com foco em:
 
@@ -127,7 +131,7 @@ project/
   
 - Uso de bibliotecas gráficas
 ---
-## 👨‍💻 Autor
+# 👨‍💻 Autor
 
 Desenvolvido por Brian Sato
 ---
